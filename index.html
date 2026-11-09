@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+  <title>Evoo AI OS — All-in-One</title>
+  <meta name="description" content="Evoo AI OS – Twój cel. Mój plan. Nasz wynik. Zintegrowana aplikacja: Czat AI, Vault, Gemini, Pipi, Aurora.">
+  <meta name="theme-color" content="#090D16">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Evoo">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23090D16' width='100' height='100'/><text y='.9em' font-size='70' x='15'>✦</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo" id="logoBtn">
+          <span class="logo-icon">✦</span>
+          <div class="logo-text">
+            <b>Evoo</b><span>AI OS</span>
+          </div>
+        </div>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Zamknij">×</button>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-module="launcher">
+          <span class="nav-icon">🏠</span>
+          <span>Start</span>
+        </button>
+        <button class="nav-item" data-module="chat">
+          <span class="nav-icon">💬</span>
+          <span>Czat AI</span>
+        </button>
+        <button class="nav-item" data-module="vault">
+          <span class="nav-icon">🔐</span>
+          <span>Vault</span>
+        </button>
+        <button class="nav-item" data-module="gemini">
+          <span class="nav-icon">🤖</span>
+          <span>Gemini</span>
+        </button>
+        <button class="nav-item" data-module="pipi">
+          <span class="nav-icon">🚀</span>
+          <span>Pipi</span>
+        </button>
+        <button class="nav-item" data-module="aurora">
+          <span class="nav-icon">🌌</span>
+          <span>Aurora</span>
+        </button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="tagline">Twój cel. Mój plan. Nasz wynik.</div>
+        <div class="version">v1.0 All-in-One</div>
+      </div>
+    </aside>
+
+    <!-- Overlay for mobile -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main content -->
+    <main id="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+        <div class="topbar-title" id="topbarTitle">Evoo AI OS</div>
+        <div class="status" id="status">
+          <i></i><span>Gotowy</span>
+        </div>
+      </header>
+
+      <div id="view" class="view">
+        <!-- Launcher -->
+        <section id="launcher" class="module active">
+          <div class="launcher-hero">
+            <h1>✦ Evoo AI OS</h1>
+            <p>All-in-One • Wszystko w jednym miejscu</p>
+          </div>
+          <div class="cards">
+            <div class="card" data-go="chat">
+              <div class="card-icon">💬</div>
+              <h3>Czat AI</h3>
+              <p>Wielo-providerowy czat z routerem modeli</p>
+            </div>
+            <div class="card" data-go="vault">
+              <div class="card-icon">🔐</div>
+              <h3>Vault</h3>
+              <p>Szyfrowany menadżer haseł (AES-GCM)</p>
+            </div>
+            <div class="card" data-go="gemini">
+              <div class="card-icon">🤖</div>
+              <h3>Gemini Deep</h3>
+              <p>Rozszerzona integracja z Gemini</p>
+            </div>
+            <div class="card" data-go="pipi">
+              <div class="card-icon">🚀</div>
+              <h3>Pipi</h3>
+              <p>Asystent planów i automatyzacji</p>
+            </div>
+            <div class="card" data-go="aurora">
+              <div class="card-icon">🌌</div>
+              <h3>Aurora</h3>
+              <p>Zaawansowany agent z pamięcią</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chat -->
+        <section id="chat" class="module">
+          <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+              <div class="msg assistant">
+                <div class="msg-avatar">✦</div>
+                <div class="msg-body">
+                  <div class="msg-name">Evoo</div>
+                  <div class="msg-text">Cześć! Jestem Evoo AI OS. Wybierz model i zacznij rozmowę. Możesz też przełączać moduły z menu bocznego.</div>
+                </div>
+              </div>
+            </div>
+            <div class="chat-composer">
+              <div class="composer-tools">
+                <select id="modelSelect" class="model-select">
+                  <option value="auto">Auto (router)</option>
+                  <option value="gemini">Gemini</option>
+                  <option value="groq">Groq</option>
+                  <option value="cerebras">Cerebras</option>
+                  <option value="mistral">Mistral</option>
+                  <option value="deepseek">DeepSeek</option>
+                  <option value="xai">xAI Grok</option>
+                </select>
+              </div>
+              <div class="composer-row">
+                <textarea id="chatInput" placeholder="Napisz wiadomość..." rows="1"></textarea>
+                <button id="sendBtn" class="send-btn" aria-label="Wyślij">➤</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Vault -->
+        <section id="vault" class="module">
+          <div class="vault-container">
+            <div class="vault-lock" id="vaultLock">
+              <div class="lock-icon">🔐</div>
+              <h2>Vault — Menadżer Haseł</h2>
+              <p>Hasła są szyfrowane lokalnie (AES-GCM + PBKDF2).<br>Nic nie wychodzi poza Twoje urządzenie.</p>
+              <form id="vaultUnlockForm">
+                <input type="password" id="masterPass" placeholder="Hasło główne (master password)" required autocomplete="current-password">
+                <button type="submit" class="btn primary">Odblokuj Vault</button>
+              </form>
+              <p class="hint">Pierwsze uruchomienie? Wpisz nowe hasło — zostanie użyte do wygenerowania klucza.</p>
+            </div>
+
+            <div class="vault-main" id="vaultMain" hidden>
+              <div class="vault-header">
+                <h2>🔐 Mój Vault</h2>
+                <button id="vaultLockBtn" class="btn ghost">Zablokuj</button>
+              </div>
+              <form id="vaultForm" class="vault-form">
+                <input type="text" id="vaultName" placeholder="Nazwa (np. Gmail, GitHub)" required>
+                <input type="text" id="vaultUser" placeholder="Login / e-mail" required>
+                <input type="password" id="vaultPass" placeholder="Hasło" required>
+                <input type="text" id="vaultNotes" placeholder="Notatki (opcjonalnie)">
+                <button type="submit" class="btn primary">Zapisz (szyfruj AES-GCM)</button>
+              </form>
+              <div class="vault-list-header">
+                <h3>Zapisane wpisy</h3>
+                <span id="vaultCount">0</span>
+              </div>
+              <ul id="vaultList" class="vault-list"></ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gemini -->
+        <section id="gemini" class="module">
+          <div class="module-panel">
+            <div class="panel-hero">
+              <div class="panel-icon">🤖</div>
+              <h2>Gemini Deep</h2>
+              <p>Rozszerzona integracja z Google Gemini</p>
+            </div>
+            <div class="panel-body">
+              <div class="info-card">
+                <h3>Status</h3>
+                <p>Moduł gotowy do połączenia z Gemini API. Używa tego samego routera co Czat AI.</p>
+              </div>
+              <div class="info-card">
+                <h3>Funkcje</h3>
+                <ul>
+                  <li>Długi kontekst i multimodalność</li>
+                  <li>Integracja z narzędziami Evoo</li>
+                  <li>Przełączanie modeli Gemini (Flash / Pro)</li>
+                </ul>
+              </div>
+              <button class="btn primary" data-go="chat">Przejdź do Czatu →</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pipi -->
+        <section id="pipi" class="module">
+          <div class="module-panel">
+            <div class="panel-hero">
+              <div class="panel-icon">🚀</div>
+              <h2>Pipi</h2>
+              <p>Asystent planów dnia i automatyzacji</p>
+            </div>
+            <div class="panel-body">
+              <div class="pipi-planner">
+                <h3>Plan na dziś</h3>
+                <div id="pipiTasks" class="task-list">
+                  <div class="task">
+                    <input type="checkbox" id="t1">
+                    <label for="t1">Przejrzeć ofertę nieruchomości</label>
+                  </div>
+                  <div class="task">
+                    <input type="checkbox" id="t2">
+                    <label for="t2">Wygenerować eBook z notatek</label>
+                  </div>
+                  <div class="task">
+                    <input type="checkbox" id="t3">
+                    <label for="t3">Zaplanować posty na X / Instagram</label>
+                  </div>
+                </div>
+                <form id="pipiAddForm" class="pipi-add">
+                  <input type="text" id="pipiNewTask" placeholder="Dodaj nowe zadanie...">
+                  <button type="submit" class="btn primary">+</button>
+                </form>
+              </div>
+              <div class="info-card">
+                <h3>O Pipi</h3>
+                <p>Pipi pomaga organizować dzień, generować plany i uruchamiać proste automatyzacje. W pełnej wersji integruje się z skillami Evoo (real estate, social, eBook).</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Aurora -->
+        <section id="aurora" class="module">
+          <div class="module-panel">
+            <div class="panel-hero">
+              <div class="panel-icon">🌌</div>
+              <h2>Aurora</h2>
+              <p>Zaawansowany agent z pamięcią i świadomością kontekstu</p>
+            </div>
+            <div class="panel-body">
+              <div class="info-card">
+                <h3>Możliwości Aurora</h3>
+                <ul>
+                  <li>Pamięć długoterminowa i recall</li>
+                  <li>Świadomość kontekstu (awareness)</li>
+                  <li>Integracja z Telegram / voice</li>
+                  <li>Scheduler i automatyczne zadania</li>
+                  <li>Vault + klucze API</li>
+                </ul>
+              </div>
+              <div class="info-card">
+                <h3>Status</h3>
+                <p>Aurora działa jako osobny backend (Python). Ten moduł jest powierzchnią w All-in-One. Pełna integracja wymaga uruchomienia serwisu Aurora.</p>
+              </div>
+              <button class="btn primary" data-go="chat">Rozmawiaj z Evoo →</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="vault.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
